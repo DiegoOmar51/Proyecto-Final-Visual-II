@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.32014.148
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32002.261
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modelo", "Modelo\Modelo.csproj", "{4FDC0CBA-03E4-4749-8B9A-8C7CBA48F72F}"
 EndProject
@@ -13,9 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CargaDatos", "CargaDatos\Ca
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procesos", "Procesos\Procesos.csproj", "{98D7556E-ABBC-41AB-9793-BFEA6B8EAFAF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestOp", "TestOp\TestOp.csproj", "{90D6659A-1245-4311-9388-BDDC2E352875}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAApp", "WebAApp\WebAApp.csproj", "{BE0804DF-BADC-47EE-ADD3-09A4169507A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAApp", "WebAApp\WebAApp.csproj", "{BE0804DF-BADC-47EE-ADD3-09A4169507A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,10 +41,6 @@ Global
 		{98D7556E-ABBC-41AB-9793-BFEA6B8EAFAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98D7556E-ABBC-41AB-9793-BFEA6B8EAFAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98D7556E-ABBC-41AB-9793-BFEA6B8EAFAF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{90D6659A-1245-4311-9388-BDDC2E352875}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{90D6659A-1245-4311-9388-BDDC2E352875}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{90D6659A-1245-4311-9388-BDDC2E352875}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{90D6659A-1245-4311-9388-BDDC2E352875}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BE0804DF-BADC-47EE-ADD3-09A4169507A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BE0804DF-BADC-47EE-ADD3-09A4169507A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE0804DF-BADC-47EE-ADD3-09A4169507A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
