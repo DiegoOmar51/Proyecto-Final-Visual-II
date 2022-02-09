@@ -1,0 +1,73 @@
+﻿@using Modelo.Entidades
+
+@model Personal
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Creacion de Personal</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>
+                Nuevo Personal
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-10">
+            <form asp-action="Create" method="post">
+                <div class="form-group">
+                    <label >Nombre Empleado: </label>
+                    <input class="form-control" type="text" asp-for="Nombre" />
+                </div>
+                <div class="form-group">
+                    <label >Cedula Empleado: </label>
+                    <input class="form-control" maxlength="10" type="text" asp-for="Cedula" />
+                </div>
+                <div class="form-group">
+                    <label >Email Empleado: </label>
+                    <input class="form-control" type="text" asp-for="Email" />
+                </div>
+                <div class="form-group">
+                    <label >Telefono Empleado: </label>
+                    <input class="form-control" maxlength="10" type="text" asp-for="Telefono" />
+                </div>
+                <div class="form-group">
+                    <label >Direccion Empleado: </label>
+                    <input class="form-control" type="text" asp-for="Direccion" />
+                </div>
+                <div class="form-group">
+                    <label >Estado Civil: </label>
+                    <input class="form-control" type="text" asp-for="EstadoCV" />
+                </div>
+               <div class="form-group">
+                    <label >Salario Empleado: </label>
+                    <input class="form-control" type="text" asp-for="salario" />
+                </div>
+               <div class="form-group">
+                   <label >Tipo Contrato: </label>
+                   @*<select class="form-control"
+                           asp-for="tipo" asp-items="Html.GetEnumSelectList<TipoContrato>()">
+                   </select>*@
+                   <input class="form-control" type="text" asp-for="tipo" />
+               </div>
+                <div class="form-group">
+                    <label >Fecha De Inicio De Actividades: </label>
+                    <input class="form-control" type="date" asp-for="fecha_incio" />
+                </div>
+               <div class="form-group">
+                    <label >Fecha De Fin de Actividades: </label>
+                    <input class="form-control" type="date" asp-for="fecha_salida" />
+                </div>
+
+                <div class="form-group">
+                    <input class="btn btn-primary" type="submit" value="Crear Personal" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
