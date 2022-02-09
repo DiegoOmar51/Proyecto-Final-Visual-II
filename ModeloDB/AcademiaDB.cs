@@ -46,8 +46,8 @@ namespace ModeloDB
                            " Username = postgres;" +
                            " Password = 17001";
                 options.UseNpgsql(conPG);*/
-                options.UseMySQL("server=localhost;database=NominaProyecto1;user=pruebas;password=pruebas");
-               /*options.UseSqlServer("Server=DESKTOP-FAR92HR; Initial Catalog=NominaProyecto1; trusted_connection=true;")
+                //options.UseMySQL("server=localhost;database=NominaProyecto1;user=pruebas;password=pruebas");
+               options.UseSqlServer("Server=DESKTOP-FAR92HR; Initial Catalog=NominaProyecto1; trusted_connection=true;")
                 .LogTo(Console.WriteLine, LogLevel.Information);  // Para activar el modo debug*/
             }
         }
@@ -74,6 +74,21 @@ namespace ModeloDB
                .HasOne(roles => roles.Personal)
                .WithMany(personal => personal.Salarios)
                .HasForeignKey(roles => roles.PersonalId);
+            //
+            model.Entity<SalarioDetalle>()
+               .HasOne(roles => roles.Empresa)
+               .WithMany(personal => personal.salarioDetalles)
+               .HasForeignKey(roles => roles.EmpresaId);
+            //
+            model.Entity<SalarioDetalle>()
+               .HasOne(roles => roles.Roles)
+               .WithMany(personal => personal.salarioDetalles)
+               .HasForeignKey(roles => roles.RolesId);
+            //
+            model.Entity<SalarioDetalle>()
+               .HasOne(roles => roles.Salarios)
+               .WithMany(personal => personal.salarioDetalles)
+               .HasForeignKey(roles => roles.SalarioId);
             //RELACION DE UNO A UNO CON EMPRESA
             model.Entity<Empresa>()
                .HasOne(malla => malla.Personal)
@@ -94,7 +109,10 @@ namespace ModeloDB
                .HasOne(malla => malla.Personal)
                .WithOne(materia => materia.liquidacion)
                .HasForeignKey<Liquidaciones>(malla => malla.PersonalId);
-            
+            model.Entity<Empresa>()
+              .HasOne(emp => emp.roles)
+              .WithMany(car => car.empresas)
+              .HasForeignKey(caremp => caremp.RolesId);
         }
     }
 }

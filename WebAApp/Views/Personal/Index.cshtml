@@ -44,9 +44,9 @@
                            <td>Estado Civil</td>
                             <td>Salario</td>
                             <td>Tipo Contrato</td>
-                            <td>Fecha Inicio</td>
-                            <td>Fecha Salida</td>
-                        <td>Acciones</td>
+                            @*<td>Fecha Inicio</td>
+                            <td>Fecha Salida</td>*@
+                        <td align="center">Acciones</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,11 +62,11 @@
                             <td>@item.EstadoCV</td>
                             <td>@item.salario</td>
                             <td>@item.tipo</td>
-                            <td>@item.fecha_incio</td>
-                            <td>@item.fecha_salida</td>
+                            @*<td>@item.fecha_incio</td>
+                            <td>@item.fecha_salida</td>*@
                             
                             
-                            <td>
+                            <td align="center">
                                 <a class="btn btn-warning"
                                     asp-controller="Personal" asp-action="Edit" asp-route-id="@item.PersonalId">
                                     Editar

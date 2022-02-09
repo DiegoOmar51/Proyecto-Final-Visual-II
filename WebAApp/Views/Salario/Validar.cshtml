@@ -11,15 +11,15 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-4">
-            <form method="post" asp-action="Validar">
+            <form method="post" asp-action="Edit">
                 <div class="form-group">
                     <label class="control-label">Salario Id</label>
                     <input class="form-control" asp-for="SalarioId" />
                 </div>
-                <div class="form-group">
+                @*<div class="form-group">
                     <label class="control-label">Decimos</label>
-                    <input class="form-control" asp-for="decterceros.meses" />
-                </div>
+                    <input class="form-control" asp-for="decterceros.total" />
+                </div>*@
                 <div class="form-group">
                     <label class="control-label">Personal</label>
                     <input class="form-control" asp-for="Personal.Nombre" />
@@ -35,23 +35,51 @@
             </form>
         </div>
 
-        <div class="col-sm-8">
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr> 
-                            <td>Personal</td>
-                            <td>Materia</td>
-                            <td>Jornada</td>
-                            <td>Nota 1</td>
-                            <td>Nota 2</td>
-                            <td>Nota 3</td>
-                            <td>Nota Final</td>
-                            <td>Aprobado</td>
-                        </tr>
-                    </thead>
-                   
-                </table>
-        </div>
+        @*<div class="col-sm-8">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <td>Personal</td>
+                        <td>Empresa</td>
+                        <td>Rol</td>
+                        <td>Salario 1</td>
+                        <td>Salario 2</td>
+                        <td>Salario 3</td>
+                        <td>Salario Final</td>
+                        <td>Estado</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.salarioDetalles)
+                    {
+                    <tr>
+                        <td>@item.Empresa.nombreEmpresa</td>
+                        <td>@item.Empresa.Personal.Nombre</td>
+                        <td>@item.Roles.comision</td>
+                        @if (item.Salarios != null)
+                            {
+                        <td>@item.Salarios.DecimoTercerSueldo</td>
+                        <td>@item.Salarios.DecimoCuartoSueldo</td>
+                        <td>@item.Salarios.Utilidades</td>
+                        <td>@ViewBag.CalSueldo.Salario(item.Salarios)</td>
+                        <td>@ViewBag.CalSueldo.SalAprobado(item.Salarios)</td>
+                            }
+                            else
+                            {
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                            }
+
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
+            
+        </div>*@
     </div>
 
 

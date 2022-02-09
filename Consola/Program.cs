@@ -1,4 +1,5 @@
-﻿using Procesos;
+﻿using Microsoft.EntityFrameworkCore;
+using Procesos;
 using System;
 using System.Linq;
 
@@ -18,6 +19,17 @@ namespace Consola
 
                 Console.WriteLine(
                             "El estudiante " + tmpEstudiante.Nombre);
+
+                var salario = db.salarios
+                .Include(salario => salario.decterceros)
+                //.Include(matricula => matricula.Personal)
+                //.Include(matricula => matricula.roles)
+                //.ThenInclude(matricula_dets => matricula_dets.RolesId)
+                //.Include(matricula => matricula.SalarioId)              
+                .Single(salario => salario.SalarioId == 1);
+
+                Console.WriteLine(salario.decterceros.Personal);
+
             }
             /* using(var db = AcademiaDBBuilder.Crear())
              {

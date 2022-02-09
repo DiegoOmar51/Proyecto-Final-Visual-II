@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ModeloDB;
@@ -9,32 +10,33 @@ using ModeloDB;
 namespace ModeloDB.Migrations
 {
     [DbContext(typeof(AcademiaDB))]
-    [Migration("20220209035027_db1")]
+    [Migration("20220209051148_db1")]
     partial class db1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 64)
-                .HasAnnotation("ProductVersion", "5.0.13");
+                .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("ProductVersion", "5.0.13")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Modelo.Entidades.Configuracion", b =>
                 {
                     b.Property<string>("NombreEmpresa")
-                        .HasColumnType("varchar(767)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<float>("Horas_Extras_Maxima")
-                        .HasColumnType("float");
+                        .HasColumnType("real");
 
                     b.Property<float>("Horas_Extras_Minima")
-                        .HasColumnType("float");
+                        .HasColumnType("real");
 
                     b.Property<float>("Salario_Horas_Extras")
-                        .HasColumnType("float");
+                        .HasColumnType("real");
 
                     b.Property<float>("sueldoMaximo")
-                        .HasColumnType("float");
+                        .HasColumnType("real");
 
                     b.HasKey("NombreEmpresa");
 
@@ -45,7 +47,8 @@ namespace ModeloDB.Migrations
                 {
                     b.Property<int>("Decimo_TerceroId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("PersonalId")
                         .HasColumnType("int");
@@ -54,23 +57,24 @@ namespace ModeloDB.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("fecha_final")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("fecha_inicio")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("meses")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("total")
-                        .HasColumnType("float");
+                        .HasColumnType("real");
 
                     b.HasKey("Decimo_TerceroId");
 
                     b.HasIndex("PersonalId");
 
                     b.HasIndex("SalarioID")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[SalarioID] IS NOT NULL");
 
                     b.ToTable("decimo_Terceros");
                 });
@@ -79,30 +83,37 @@ namespace ModeloDB.Migrations
                 {
                     b.Property<int>("EmpresaId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("PersonalId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("RolesId")
+                        .HasColumnType("int");
+
                     b.Property<string>("direccion")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("nombreEmpresa")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("provincia")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ruc")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("telefono")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("EmpresaId");
 
                     b.HasIndex("PersonalId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[PersonalId] IS NOT NULL");
+
+                    b.HasIndex("RolesId");
 
                     b.ToTable("empresas");
                 });
@@ -111,7 +122,8 @@ namespace ModeloDB.Migrations
                 {
                     b.Property<int>("LiquidacionesId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Estadoliq")
                         .HasColumnType("int");
@@ -120,18 +132,19 @@ namespace ModeloDB.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("cesantia")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("periodo_pri")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("salario_base")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("LiquidacionesId");
 
                     b.HasIndex("PersonalId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[PersonalId] IS NOT NULL");
 
                     b.ToTable("liquidaciones");
                 });
@@ -140,34 +153,35 @@ namespace ModeloDB.Migrations
                 {
                     b.Property<int>("PersonalId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Cedula")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Direccion")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("EstadoCV")
                         .HasColumnType("int");
 
                     b.Property<string>("Nombre")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Telefono")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("fecha_incio")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("fecha_salida")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<float>("salario")
-                        .HasColumnType("float");
+                        .HasColumnType("real");
 
                     b.Property<int>("tipo")
                         .HasColumnType("int");
@@ -181,7 +195,8 @@ namespace ModeloDB.Migrations
                 {
                     b.Property<int>("RolesId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("PersonalId")
                         .HasColumnType("int");
@@ -190,23 +205,24 @@ namespace ModeloDB.Migrations
                         .HasColumnType("int");
 
                     b.Property<float>("anticipo")
-                        .HasColumnType("float");
+                        .HasColumnType("real");
 
                     b.Property<float>("aporte_iess")
-                        .HasColumnType("float");
+                        .HasColumnType("real");
 
                     b.Property<float>("comision")
-                        .HasColumnType("float");
+                        .HasColumnType("real");
 
                     b.Property<float>("total")
-                        .HasColumnType("float");
+                        .HasColumnType("real");
 
                     b.HasKey("RolesId");
 
                     b.HasIndex("PersonalId");
 
                     b.HasIndex("SalarioID")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[SalarioID] IS NOT NULL");
 
                     b.ToTable("roles");
                 });
@@ -215,13 +231,14 @@ namespace ModeloDB.Migrations
                 {
                     b.Property<int>("SalarioId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<float>("DecimoCuartoSueldo")
-                        .HasColumnType("float");
+                        .HasColumnType("real");
 
                     b.Property<float>("DecimoTercerSueldo")
-                        .HasColumnType("float");
+                        .HasColumnType("real");
 
                     b.Property<int>("EstadoSal")
                         .HasColumnType("int");
@@ -230,16 +247,43 @@ namespace ModeloDB.Migrations
                         .HasColumnType("int");
 
                     b.Property<float>("SueldoBasico")
-                        .HasColumnType("float");
+                        .HasColumnType("real");
 
                     b.Property<float>("Utilidades")
-                        .HasColumnType("float");
+                        .HasColumnType("real");
 
                     b.HasKey("SalarioId");
 
                     b.HasIndex("PersonalId");
 
                     b.ToTable("salarios");
+                });
+
+            modelBuilder.Entity("Modelo.Entidades.SalarioDetalle", b =>
+                {
+                    b.Property<int>("SalarioDetalleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("EmpresaId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RolesId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SalarioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SalarioDetalleId");
+
+                    b.HasIndex("EmpresaId");
+
+                    b.HasIndex("RolesId");
+
+                    b.HasIndex("SalarioId");
+
+                    b.ToTable("SalarioDetalle");
                 });
 
             modelBuilder.Entity("Modelo.Entidades.Decimo_Tercero", b =>
@@ -263,7 +307,13 @@ namespace ModeloDB.Migrations
                         .WithOne("empresa")
                         .HasForeignKey("Modelo.Entidades.Empresa", "PersonalId");
 
+                    b.HasOne("Modelo.Entidades.Roles", "roles")
+                        .WithMany("empresas")
+                        .HasForeignKey("RolesId");
+
                     b.Navigation("Personal");
+
+                    b.Navigation("roles");
                 });
 
             modelBuilder.Entity("Modelo.Entidades.Liquidaciones", b =>
@@ -299,6 +349,32 @@ namespace ModeloDB.Migrations
                     b.Navigation("Personal");
                 });
 
+            modelBuilder.Entity("Modelo.Entidades.SalarioDetalle", b =>
+                {
+                    b.HasOne("Modelo.Entidades.Empresa", "Empresa")
+                        .WithMany("salarioDetalles")
+                        .HasForeignKey("EmpresaId");
+
+                    b.HasOne("Modelo.Entidades.Roles", "Roles")
+                        .WithMany("salarioDetalles")
+                        .HasForeignKey("RolesId");
+
+                    b.HasOne("Modelo.Entidades.Salario", "Salarios")
+                        .WithMany("salarioDetalles")
+                        .HasForeignKey("SalarioId");
+
+                    b.Navigation("Empresa");
+
+                    b.Navigation("Roles");
+
+                    b.Navigation("Salarios");
+                });
+
+            modelBuilder.Entity("Modelo.Entidades.Empresa", b =>
+                {
+                    b.Navigation("salarioDetalles");
+                });
+
             modelBuilder.Entity("Modelo.Entidades.Personal", b =>
                 {
                     b.Navigation("Decimos_Terceros");
@@ -312,11 +388,20 @@ namespace ModeloDB.Migrations
                     b.Navigation("Salarios");
                 });
 
+            modelBuilder.Entity("Modelo.Entidades.Roles", b =>
+                {
+                    b.Navigation("empresas");
+
+                    b.Navigation("salarioDetalles");
+                });
+
             modelBuilder.Entity("Modelo.Entidades.Salario", b =>
                 {
                     b.Navigation("decterceros");
 
                     b.Navigation("roles");
+
+                    b.Navigation("salarioDetalles");
                 });
 #pragma warning restore 612, 618
         }

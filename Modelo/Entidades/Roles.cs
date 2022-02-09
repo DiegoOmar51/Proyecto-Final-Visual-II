@@ -19,5 +19,10 @@ namespace Modelo.Entidades
         //RELACION CON SALARIO 
         public int? SalarioID { get; set; }
         public Salario Salario { get; set; }
+
+        //RELACION UNO A MUCHOS DE DECIMO TERCERO 
+        public List<SalarioDetalle> salarioDetalles { get; set; }
+
+        public List<Empresa> empresas { get; set; }
     }
 }

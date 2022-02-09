@@ -34,28 +34,29 @@
         {
             <table class="table table-bordered table-striped">
                 <thead>
-                    <tr> 
+                    <tr>
                         <td>Id</td>
+                        
                         <td>Nombre</td>
-                      
-                        <td>Créditos</td>
-                        <td>Acciones</td>
+
+                        <td>Estado</td>
+                        <td align="center">Acciones</td>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>@item.decterceros.total</td>
-                            <td>@item.Personal.Nombre</td>
-                            <td>@item.EstadoSal</td>
-                            <td>
-                                <a class="btn btn-warning"
-                                    asp-controller="Salario" asp-action="Validar" asp-route-id="@item.SalarioId">
-                                    Ver
-                                </a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>@item.PersonalId</td>
+                        <td>@item.Personal.Nombre</td>
+                        <td>@item.EstadoSal</td>
+                        <td align="center">
+                            <a class="btn btn-warning"
+                               asp-controller="Salario" asp-action="Validar" asp-route-id="@item.SalarioId">
+                                Liquidar Personal
+                            </a>
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>

@@ -11,7 +11,7 @@ namespace Modelo.Entidades
     {
         // Atributos
         public enum EstadoCivil { Soltero, Casado, Divorciado, Viudo}
-        public enum TipoContrato { Completo, Indefinido, Prueba, Proyecto}
+        public enum TipoContrato { Completo, Indefinido, Prueba, Liquidado}
         //public enum JornadaTipo { Diurno, Nocturno, Ejecutivo }
         public int PersonalId { get; set; }
         public string Nombre { get; set; }

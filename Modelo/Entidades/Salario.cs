@@ -41,5 +41,8 @@ namespace Modelo.Entidades
             res = decimotercersueldo(sueldobasico) >= SalarioMinima;
             return res;
         }
+
+        //RELACION UNO A MUCHOS DE DECIMO TERCERO 
+        public List<SalarioDetalle> salarioDetalles { get; set; }
     }
 }

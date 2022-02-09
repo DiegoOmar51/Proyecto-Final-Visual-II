@@ -12,10 +12,18 @@ namespace Modelo.Entidades
         //Relacion uno a uno con Personal
         public int? PersonalId { get; set; }
         public Personal Personal { get; set; }
+        
         public string ruc { get; set; }
         public string nombreEmpresa { get; set; }
         public string direccion { get; set; }
         public string telefono { get; set; }
         public string provincia { get; set; }
+
+
+        //RELACION UNO A MUCHOS DE DECIMO TERCERO 
+        public List<SalarioDetalle> salarioDetalles { get; set; }
+
+        public int? RolesId { get; set; }
+        public Roles roles { get; set; }
     }
 }
